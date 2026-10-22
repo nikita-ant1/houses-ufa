@@ -53,12 +53,14 @@
   import { useCreditPrograms } from '@/stores/credit-programs';
   import { useCreditProgramCalc as useLkStore } from '@/lk-modules/credit-program-list/store';
   import { useAuthStore } from '@/stores/auth';
+  import { usePublicHeader } from '@/other-modules/public-header/store/index';
 
   const creditCalc = useCreditProgramCalc();
   const creditProg = useCreditPrograms();
   const lkStore = useLkStore();
   const router = useRouter();
   const authStore = useAuthStore();
+  const header = usePublicHeader();
 
   const progs = computed(() => creditProg.creditProgs?.data ?? []);
 
@@ -135,10 +137,7 @@
   }
 
   function goDown() {
-    const el = document.querySelector('.question-form');
-    if(el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    header.toggleForm('ipoteka');
   };
 </script>
 

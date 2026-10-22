@@ -10,4 +10,5 @@ export const data = {
   aksiya_timer: 349601929,
   vibrat_nedvizimost_po_aksiyi: 323540167,
   taimer: 5091001,
+  ipoteka: 673240216,
 };
