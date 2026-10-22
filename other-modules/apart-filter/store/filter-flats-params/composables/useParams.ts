@@ -12,6 +12,10 @@ function useFlatParams() {
     return house ?? null;
   });
 
+  watch(() => complexOne.complexId, () => {
+    filterParams.house_id = null;
+  });
+
   watch(() => filterParams.house_id, () => {
     filterParams.entrance_id = null;
   });
