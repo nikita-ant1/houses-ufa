@@ -54,6 +54,7 @@ export default defineNuxtConfig({
             tagPosition: 'head',
           },
           {
+            async: true,
             type: 'text/javascript',
             src: Botfaqtor.script2,
             tagPosition: 'head',
