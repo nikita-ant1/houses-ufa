@@ -13,7 +13,7 @@ import * as Botfaqtor from './scripts/botfaqtor';
 import useRouteRules from './config-parts/useRouteRules';
 
 function definePublicConfig() {
-  const host = 'https://adminsite.gkufa.ru/';
+  const host = 'https://admin.gkufa.ru/';
   return {
     host,
     baseURL: host + 'api/lobby/',
