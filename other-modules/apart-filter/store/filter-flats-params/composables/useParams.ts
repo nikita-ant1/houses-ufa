@@ -6,15 +6,18 @@ function useFlatParams() {
   const complexOne =  useComplexOne();
 
   const housesList = computed(() => complexOne.houses?.data ?? null);
+  initHouse();
   const currentHouse = computed(() => {
     if(!housesList.value || !filterParams.house_id) return null;
     const house = housesList.value.find((house) => house.id === filterParams.house_id);
     return house ?? null;
   });
 
-  watch(() => complexOne.complexId, () => {
-    filterParams.house_id = null;
-  });
+  function initHouse() {
+    filterParams.house_id = housesList.value?.[0].id ?? null;
+  };
+
+  watch(housesList, initHouse);
 
   watch(() => filterParams.house_id, () => {
     filterParams.entrance_id = null;
