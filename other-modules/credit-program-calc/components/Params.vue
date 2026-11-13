@@ -137,7 +137,7 @@
   }
 
   function goDown() {
-    header.toggleForm('ipoteka');
+    header.toggleForm('kalkulyator');
   };
 </script>
 

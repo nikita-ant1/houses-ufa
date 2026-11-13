@@ -1,3 +1,5 @@
+export const COUNTER_ID = 5091001;
+
 export const data = {
   order: 5091001,
   book_city: 318803815,
@@ -10,5 +12,5 @@ export const data = {
   aksiya_timer: 349601929,
   vibrat_nedvizimost_po_aksiyi: 323540167,
   taimer: 5091001,
-  ipoteka: 673240216,
+  kalkulyator: 673240216,
 };

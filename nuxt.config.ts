@@ -48,17 +48,17 @@ export default defineNuxtConfig({
           { name: 'yandex-verification', content: '89eb28202ac895e5' }
         ],
         script: [
-          {
-            type: 'text/javascript',
-            innerHTML: Botfaqtor.script1,
-            tagPosition: 'head',
-          },
-          {
-            async: true,
-            type: 'text/javascript',
-            src: Botfaqtor.script2,
-            tagPosition: 'head',
-          },
+          // {
+          //   type: 'text/javascript',
+          //   innerHTML: Botfaqtor.script1,
+          //   tagPosition: 'head',
+          // },
+          // {
+          //   async: true,
+          //   type: 'text/javascript',
+          //   src: Botfaqtor.script2,
+          //   tagPosition: 'head',
+          // },
           {
             type: 'text/javascript',
             innerHTML: YandexMetric.body,
