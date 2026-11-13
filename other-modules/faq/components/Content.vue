@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
   import type { File } from '@/types/share';
-  import Item from './Item.vue';
+  import Item from './ItemOne.vue';
   import { useDataFetch } from '@/composables/useDataFetch';
   import { useFaq } from '../store';
 
