@@ -44,6 +44,7 @@ import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/stores/auth'
 import { Form } from 'vee-validate'
 import { useNotifyStore } from '@/stores/notify'
+import { UserType } from '@/types/user';
 
 const emits = defineEmits<{
   (event: 'next'): void
@@ -76,6 +77,7 @@ const requestCode = async () => {
 
 const filled = async (code: string) => {
   const data = await login(code);
+  if(!data) return;
   if(data.data.domain === 'b2v') {
     authStore.toRegister()
   } else if(data.data.domain) {
@@ -105,6 +107,14 @@ interface LoginRes {
   }
 }
 
+interface ReqExists {
+  code: 'AGENCY_REGISTRATION_EXISTS',
+  message: string,
+  data: {
+    registration: {id: number, status: 'pending' | 'denied' | 'approved' },
+  },
+}
+
 async function repeatCode() {
   const body = {
     cellphone: authStore.cellphoneRaw,
@@ -120,6 +130,27 @@ async function repeatCode() {
   return true;
 }
 
+function isExistsReq(data: Record<string, any>): data is ReqExists  {
+  return 'code' in data;
+}
+
+function isLoginRes(data: Record<string, any>): data is LoginRes  {
+  return 'data' in data && 'token' in data['data'];
+}
+
+function showReqAlert(status: ReqExists['data']['registration']['status']) {
+  notify.create({
+    type: 'warning',
+    message: status === 'pending'
+      ? 'Заявка отправлена и ожидает рассмотрения'
+      : status === 'denied'
+      ? 'Заявка отклонена. Обратитесь к менеджеру'
+      : status === 'approved'
+      ? 'Заявка одобрена. Повторите авторизацию, если данное сообщение повторяется, обратитесь в поддержку.'
+      : 'Неизвестный статус заявки',
+  });
+}
+
 async function login(code: string) {
   const body = {
     code,
@@ -127,22 +158,28 @@ async function login(code: string) {
   };
 
   try {
-    const data = await $fetch<LoginRes>('b2v/login', {
+    const data = await $fetch<Record<string, any>>('b2v/login', {
       method: 'post',
       body,
       baseURL: config.public.rootApi,
     });
 
-    if(data.data.domain === 'b2v') {
-      authStore.setTempToken(data.data.token);
-    } else {
-      authStore.setToken(
-        data.data.token,
-        data.data.domain ?? authStore.selectRole
-      );
-    }
+    if(isExistsReq(data)) {
+      if(data.code === 'AGENCY_REGISTRATION_EXISTS') {
+        showReqAlert(data.data.registration.status);
+      }
+    } else if(isLoginRes(data)) {
+      if(data.data.domain === 'b2v') {
+        authStore.setTempToken(data.data.token);
+      } else {
+        authStore.setToken(
+          data.data.token,
+          data.data.domain ?? authStore.selectRole as UserType,
+        );
+      }
 
-    return data;
+      return data;
+    }
   } catch(e: any) {
     if(e.statusCode === 409) {
       notify.create({ type: 'error', message: 'Неправильный код' });
