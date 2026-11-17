@@ -10,7 +10,7 @@
         </div>
         <BtnsActionsBase class="consult-header__hide" icon="close" @click="hide" />
       </div>
-      <Form :goal="goal" />
+      <Form :goal="goal" @send:success="hide" />
     </BaseModalCard>
   </BaseModal>
 </template>

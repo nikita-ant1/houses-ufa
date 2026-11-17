@@ -55,6 +55,10 @@
     goal?: keyof typeof data,
   }>(), { goal: 'order' });
 
+  const emit = defineEmits<{
+    (event: 'send:success'): void
+  }>();
+
   const orderGoal = useGoal(props.goal);
 
   const store = useConsultForm();
@@ -64,6 +68,7 @@
       await store.send();
       formRef.value.resetForm();
       orderGoal.execute();
+      emit('send:success');
     } catch(e) {}
   }
 </script>
