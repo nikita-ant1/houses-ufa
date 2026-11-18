@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink class="credit-item" to="/ipoteka#credit-calc">
+  <NuxtLink class="credit-item" to="/ipoteka">
     <div class="credit-item__left">
       <div class="credit-item__block">
         <h3 class="credit-item__name">{{ item.name }}</h3>

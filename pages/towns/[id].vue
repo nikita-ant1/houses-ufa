@@ -7,11 +7,11 @@
 
   <LandProjectList v-if="townCard.isEmptyPlace && townCard.data" :town-id="townId" />
 
-  <section class="section">
+  <!-- <section class="section">
     <div class="wrapper">
       <CreditCalc object-type="town" :object-id="townId" />
     </div>
-  </section>
+  </section> -->
   <section v-if="!townCard.isEmptyPlace && townCard.data" class="section">
     <div class="wrapper">
       <div class="section__top">

@@ -40,11 +40,11 @@
       <CreditList />
     </div>
   </section>
-  <section class="section" id="credit-calc">
+  <!-- <section class="section" id="credit-calc">
     <div class="wrapper">
       <CreditCalc />
     </div>
-  </section>
+  </section> -->
   <!-- <section class="section">
     <div class="wrapper">
       <TextSpecification />

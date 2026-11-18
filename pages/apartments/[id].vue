@@ -4,14 +4,14 @@
       <FlatCard />
     </div>
   </div>
-  <section class="section">
+  <!-- <section class="section">
     <div class="wrapper">
       <div class="section__top">
         <h2 class="section__title">Ипотека</h2>
       </div>
       <CreditCalc object-type="flat" :object-id="id" />
     </div>
-  </section>
+  </section> -->
   <section class="section">
     <div class="wrapper">
       <div class="section__top">
