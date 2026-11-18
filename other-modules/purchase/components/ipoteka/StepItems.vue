@@ -10,7 +10,7 @@
       <div class="purchase-card-item__body">
         <p v-html="items[0].body"></p>
       </div>
-      <div class="bank-items">
+      <!-- <div class="bank-items">
         <span class="bank-items__item">
           <img width="24px" height="24px" src="../../images/banks/sber.svg" />
         </span>
@@ -26,7 +26,7 @@
         <span class="bank-items__item">
           <img width="24px" height="24px" src="../../images/banks/gaz.svg" />
         </span>
-      </div>
+      </div> -->
     </article>
     <article class="purchase-card-item bank-item">
       <div class="purchase-card-item__top">
@@ -56,16 +56,16 @@
 <script setup lang="ts">
   const items = [
     {
-      body: 'Выбор банка',
+      body: 'Консультация ипотечного брокера',
+      icon: 'handshake',
+    },
+    {
+      body: 'Помощь в оформлении ипотеки',
+      icon: 'file-dooble',
+    },
+    {
+      body: 'Аккредитация в 15-ти банках РФ',
       icon: 'bank',
-    },
-    {
-      body: 'Одобрение банком суммы кредита и одобрение сделки',
-      icon: 'rub',
-    },
-    {
-      body: 'Первоначальный взнос',
-      icon: 'percent',
     },
   ];
 </script>

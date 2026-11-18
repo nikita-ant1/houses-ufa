@@ -5,23 +5,24 @@
         class="credit-list__item credit-list__item--full"
         :item="items[0]"
         :img="imgIds[items[0].id]"
-        @click="changeProg(items[0].id)"
+        @click="showModal"
       />
       <Item
         v-if="items[1]"
         class="credit-list__item credit-list__item--full"
         :item="items[1]"
         :img="imgIds[items[1].id]"
-        @click="changeProg(items[1].id)"
+        @click="showModal"
       />
       <Item
         v-if="items[2]"
         class="credit-list__item credit-list__item--full"
         :item="items[2]"
         :img="imgIds[items[2].id]"
-        @click="changeProg(items[2].id)"
+        @click="showModal"
       />
     </template>
+    <ModalTextAbout v-model="showedModal" />
   </div>
 </template>
 
@@ -29,6 +30,7 @@
   import Item from './components/Item.vue';
   import { useCreditPrograms } from '@/stores/credit-programs';
   import { useCreditProgramCalc } from '@/other-modules/credit-program-calc/store';
+  import ModalTextAbout from './ModalTextAbout.vue';
 
   const creditStore = useCreditPrograms();
   const creditCalc = useCreditProgramCalc();
@@ -73,6 +75,12 @@
     creditCalc.groupId = id;
     creditCalc.show();
     scrollToCalc();
+  }
+
+  const showedModal = ref(false);
+
+  function showModal() {
+    showedModal.value = true;
   }
 </script>
 
