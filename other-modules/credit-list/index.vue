@@ -5,24 +5,24 @@
         class="credit-list__item credit-list__item--full"
         :item="items[0]"
         :img="imgIds[items[0].id]"
-        @click="showModal"
+        @click="showModal(items[0].specification)"
       />
       <Item
         v-if="items[1]"
         class="credit-list__item credit-list__item--full"
         :item="items[1]"
         :img="imgIds[items[1].id]"
-        @click="showModal"
+        @click="showModal(items[1].specification)"
       />
       <Item
         v-if="items[2]"
         class="credit-list__item credit-list__item--full"
         :item="items[2]"
         :img="imgIds[items[2].id]"
-        @click="showModal"
+        @click="showModal(items[2].specification)"
       />
     </template>
-    <ModalTextAbout v-model="showedModal" />
+    <ModalTextAbout v-model="showedModal" :currentText="currentText" />
   </div>
 </template>
 
@@ -78,8 +78,10 @@
   }
 
   const showedModal = ref(false);
+  const currentText = ref('');
 
-  function showModal() {
+  function showModal(text: string) {
+    currentText.value = text;
     showedModal.value = true;
   }
 </script>
