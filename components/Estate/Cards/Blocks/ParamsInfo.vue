@@ -9,14 +9,14 @@
         <span class="estate-card-bottom__price">{{ $amount(pricePromo ?? price) }}</span>
       </div>
     </template>
-    <div v-if="creditMonth || creditStart" class="estate-card-bottom__credit">
+    <!-- <div v-if="creditMonth || creditStart" class="estate-card-bottom__credit">
       <p v-if="creditMonth" class="estate-card-bottom__credit-text">
         В ипотеку — <span class="tw-text-primary">от {{ $formatValue(creditMonth, '₽ / мес') }}</span>
       </p>
       <p v-if="creditStart" class="estate-card-bottom__credit-text">
         Первоначальный взнос — <span class="tw-text-primary">от {{ $amount(creditStart) }}</span>
       </p>
-    </div>
+    </div> -->
   </div>
 </template>
 
